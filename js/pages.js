@@ -168,7 +168,7 @@
 
   /* ---------- Homes: listings (sale + rent) and detail dialog ---------- */
   function listings(sec) {
-    const H = (window.NX_HOMES || []).filter((h) => h && h.id && h.price);
+    const H = (window.NX_HOMES || []).filter((h) => h && h.id);
     const grid = $('#lGrid', sec), empty = $('#lEmpty', sec), count = $('#lCount', sec), note = $('#lNote', sec);
     const sArea = $('#lArea', sec), sBeds = $('#lBeds', sec), sSort = $('#lSort', sec), segs = $$('[data-deal]', sec);
     const dlg = $('#homeDlg');
@@ -179,7 +179,9 @@
     const place = (s) => { const k = 'pl_' + String(s).replace(/\s+/g, '_').replace('á', 'a'); const v = t(k); return v === k ? s : v; };
     const src = (n, w) => `${NX.root || ""}img/homes/${encodeURIComponent(n)}-${w}.webp`;
     const srcset = (n) => `${src(n, 800)} 800w, ${src(n, 1600)} 1600w`;
-    const price = (h) => eur(h.price) + (h.deal === 'rent' ? `<small>${esc(t('per_mo'))}</small>` : '');
+    const price = (h) => !h.price ? esc(t('l_price_req')) : (h.priceFrom ? `<small>${esc(t('l_from'))}</small>` : '') + eur(h.price) + (h.deal === 'rent' ? `<small>${esc(t('per_mo'))}</small>` : '');
+    const bedsTxt = (h) => h.bedsTo ? `${num(h.beds)}–${num(h.bedsTo)}` : num(h.beds);
+    const pv = (h) => h.price || Infinity;
     const loc = (h) => [h.area, h.city].filter(Boolean).map(place).join(sep());
     const ic = (n) => `<svg class="ic" aria-hidden="true"><use href="#i-${n}"/></svg>`;
     const off = (h) => h.status && h.status !== 'available';
@@ -204,7 +206,7 @@
           <p class="home-price">${price(h)}</p></div>
         <div class="home-body"><h3>${esc(tr(h.title))}</h3>
           <p class="home-loc">${ic('pin')}<span>${esc(loc(h))}</span></p>
-          <p class="home-specs"><span>${ic('bed')}${num(h.beds)} ${esc(t('l_beds'))}</span><span>${ic('bath')}${num(h.baths)} ${esc(t('l_baths'))}</span><span>${ic('size')}<span class="ltr">${num(h.size)}</span> ${esc(t('l_m2'))}</span><span class="home-ref ltr">${esc(h.id)}</span></p></div>
+          <p class="home-specs"><span>${ic('bed')}${bedsTxt(h)} ${esc(t('l_beds'))}</span>${h.baths ? `<span>${ic('bath')}${num(h.baths)} ${esc(t('l_baths'))}</span>` : ''}${h.size ? `<span>${ic('size')}<span class="ltr">${num(h.size)}</span> ${esc(t('l_m2'))}</span>` : ''}<span class="home-ref ltr">${esc(h.id)}</span></p></div>
         <a class="home-link" href="#home=${encodeURIComponent(h.id)}" data-home="${esc(h.id)}"><span class="vh">${esc(t('l_view'))}: ${esc(tr(h.title))}</span></a>
       </article>`;
     };
@@ -213,9 +215,9 @@
       segs.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.deal === deal)));
       fillSelects(keep);
       const area = sArea.value, beds = +sBeds.value, sort = sSort.value;
-      const list = H.filter((h) => h.deal === deal && (!area || h.city === area) && h.beds >= beds).sort((a, b) =>
+      const list = H.filter((h) => h.deal === deal && (!area || h.city === area) && (h.bedsTo || h.beds) >= beds).sort((a, b) =>
         (RANK[a.status] || 0) - (RANK[b.status] || 0) ||
-        (sort === 'lo' ? a.price - b.price : sort === 'hi' ? b.price - a.price : String(b.added).localeCompare(String(a.added))));
+        (sort === 'lo' ? pv(a) - pv(b) : sort === 'hi' ? (b.price || 0) - (a.price || 0) : String(b.added).localeCompare(String(a.added))));
       grid.innerHTML = list.map(card).join('');
       empty.hidden = list.length > 0;
       count.textContent = list.length === 1 ? t('l_count1') : sub(t('l_count'), { n: num(list.length) });
@@ -245,13 +247,14 @@
       const bd = $('#hdBadge'); bd.hidden = !(h.sample || off(h));
       bd.textContent = off(h) ? t('st_' + h.status) : t('st_sample');
       bd.classList.toggle('home-badge--st', off(h));
-      $('#hdSpecs').innerHTML = [[t('l_bed_full'), num(h.beds)], [t('l_bath_full'), num(h.baths)], [t('l_size'), `${num(h.size)} ${t('l_m2')}`], [t('l_type'), t('l_type_' + (h.type || 'apartment'))]]
+      $('#hdSpecs').innerHTML = [[t('l_bed_full'), bedsTxt(h)], h.baths && [t('l_bath_full'), num(h.baths)], h.size && [t('l_size'), `${num(h.size)} ${t('l_m2')}`], [t('l_type'), t('l_type_' + (h.type || 'apartment'))]].filter(Boolean)
         .map(([a, b]) => `<div><dt>${esc(a)}</dt><dd>${esc(b)}</dd></div>`).join('');
       $('#hdText').textContent = tr(h.text);
       const F = (h.features || []).map((f) => t('hf_' + f)).filter((s) => !/^hf_/.test(s));
       $('.hd-feat').hidden = !F.length;
       $('#hdFeat').innerHTML = F.map((f) => `<li>${esc(f)}</li>`).join('');
-      if (h.deal === 'rent') {
+      $('#hdCostT').hidden = $('#hdCost').hidden = !h.price;
+      if (!h.price) { /* price on request: no cost table */ } else if (h.deal === 'rent') {
         $('#hdCostT').textContent = t('l_costs_rent');
         rows($('#hdCost'), [[t('l_dep'), eur(h.price)], [t('l_agency'), t('l_zero')]]);
       } else {

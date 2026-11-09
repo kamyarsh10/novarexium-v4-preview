@@ -1,152 +1,93 @@
 /* Novarexium v4: homes for sale and rent.
-   To add a home: copy one block, give it a new id (NX-105...), put its photos in img/homes/ as
+   To add a home: copy one block, give it a new id (NX-104...), put its photos in img/homes/ as
    <name>-800.webp and <name>-1600.webp, and list the <name>s under "photos" (first one is the cover).
    deal: "sale" or "rent". status: "available", "reserved", "sold" or "rented". price in euros (rent = per month).
-   features: lift, heating, ac, furnished, metro, concierge, terrace, storage, pool, sea, parking, garden.
-   The 4 homes below are SAMPLES ("sample": true) and must be removed before real homes go live. */
+   Optional: leave out price ("Price on request"), baths or size (hidden); "priceFrom": true shows "From";
+   "bedsTo": 3 shows a range such as 2-3 bedrooms.
+   features: lift, heating, ac, furnished, metro, concierge, terrace, storage, pool, sea, parking, garden, gym. */
 window.NX_HOMES = [
   {
-    "id": "NX-104",
-    "sample": true,
+    "id": "NX-103",
     "status": "available",
     "deal": "rent",
     "type": "apartment",
-    "price": 2150,
-    "beds": 3,
-    "baths": 2,
-    "size": 118,
-    "city": "Madrid",
-    "area": "Salamanca",
-    "features": [
-      "lift",
-      "heating",
-      "ac",
-      "furnished",
-      "metro",
-      "concierge"
-    ],
-    "added": "2026-11-04",
-    "title": {
-      "fa": "آپارتمان سه‌خوابه نزدیک پارک رتیرو",
-      "en": "Three-bedroom flat near Retiro Park",
-      "es": "Piso de tres habitaciones junto al Retiro"
-    },
-    "text": {
-      "fa": "آپارتمان روشن در ساختمانی کلاسیک با آسانسور و نگهبان. مبله، با گرمایش مرکزی و کولر. چند دقیقه پیاده تا مترو و پارک.",
-      "en": "A bright flat in a classic building with lift and concierge. Furnished, with central heating and air conditioning. A few minutes' walk to the metro and the park.",
-      "es": "Piso luminoso en un edificio clásico con ascensor y portero. Amueblado, con calefacción central y aire acondicionado. A pocos minutos andando del metro y del parque."
-    },
-    "photos": [
-      "flat-gold",
-      "living-modern",
-      "bedroom-modern"
-    ]
-  },
-  {
-    "id": "NX-103",
-    "sample": true,
-    "status": "available",
-    "deal": "sale",
-    "type": "apartment",
-    "price": 640000,
     "beds": 2,
     "baths": 2,
-    "size": 96,
     "city": "Madrid",
-    "area": "Centro",
     "features": [
-      "lift",
-      "terrace",
-      "heating",
-      "ac",
+      "parking",
       "storage"
     ],
-    "added": "2026-11-02",
+    "added": "2026-11-09",
     "title": {
-      "fa": "آپارتمان دوخوابه با بالکن رو به خیابان",
-      "en": "Two-bedroom flat with street balconies",
-      "es": "Piso de dos habitaciones con balcones a la calle"
+      "fa": "آپارتمان دوخوابه در شمال مادرید",
+      "en": "Two-bedroom flat in north Madrid",
+      "es": "Piso de dos dormitorios en el norte de Madrid"
     },
     "text": {
-      "fa": "در یکی از ساختمان‌های قدیمی مرکز شهر، با سقف بلند، بالکن‌های فرفورژه و انباری. بازسازی‌شده و آماده سکونت.",
-      "en": "In one of the old buildings of the city centre, with high ceilings, wrought-iron balconies and a storage room. Renovated and ready to move in.",
-      "es": "En un edificio antiguo del centro, con techos altos, balcones de forja y trastero. Reformado y listo para entrar a vivir."
+      "fa": "اجاره بلندمدت. دو اتاق خواب و دو سرویس بهداشتی، آشپزخانه کاملاً مجهز، پارکینگ و انباری. در طبقه ششم یک برج، با موقعیت عالی در شمال مادرید.",
+      "en": "Long-term rental. Two bedrooms and two bathrooms, a fully equipped kitchen, parking and a storage room. On the sixth floor of a tower, well placed in the north of Madrid.",
+      "es": "Alquiler de larga duración. Dos dormitorios y dos baños, cocina totalmente equipada, garaje y trastero. En la sexta planta de una torre, bien situado en el norte de Madrid."
     },
     "photos": [
-      "flat-granada-2",
-      "flat-granada",
-      "bedroom-modern"
+      "madrid-north"
     ]
   },
   {
     "id": "NX-102",
-    "sample": true,
-    "status": "reserved",
+    "status": "available",
     "deal": "sale",
     "type": "apartment",
-    "price": 385000,
     "beds": 2,
-    "baths": 1,
-    "size": 82,
-    "city": "Marbella",
-    "area": "Costa del Sol",
+    "bedsTo": 3,
+    "city": "Madrid",
     "features": [
       "pool",
-      "terrace",
-      "sea",
-      "ac",
-      "parking"
+      "gym",
+      "parking",
+      "storage",
+      "garden"
     ],
-    "added": "2026-10-28",
+    "added": "2026-11-09",
     "title": {
-      "fa": "آپارتمان کنار دریا در کوستا دل سول",
-      "en": "Seafront flat on the Costa del Sol",
-      "es": "Piso en primera línea en la Costa del Sol"
+      "fa": "پیش‌فروش آپارتمان‌های دو و سه‌خوابه نوساز در مادرید",
+      "en": "New-build two and three-bedroom flats in Madrid, off plan",
+      "es": "Obra nueva de dos y tres dormitorios en Madrid, sobre plano"
     },
     "text": {
-      "fa": "روبه‌روی ساحل، با تراس، استخر مشاع و پارکینگ. مناسب برای زندگی آرام یا اجاره فصلی.",
-      "en": "Facing the beach, with a terrace, shared pool and parking. Suits a quiet life or seasonal letting.",
-      "es": "Frente a la playa, con terraza, piscina comunitaria y garaje. Ideal para vivir tranquilo o para alquiler de temporada."
+      "fa": "پروژه نوساز در منطقه‌ای جدید و رو‌به‌رشد در مادرید، از سازنده‌ای با بیش از ۲۰ سال سابقه ساخت‌وساز در اسپانیا. پیش‌پرداخت ۳۰٪ و تحویل در سال ۲۰۲۸. دارای استخر، باشگاه ورزشی، پارکینگ، انباری و فضای سبز.",
+      "en": "A new development in a growing new district of Madrid, by a builder with more than 20 years of building in Spain. 30% down payment, with handover in 2028. Pool, gym, parking, storage room and gardens.",
+      "es": "Promoción de obra nueva en una zona nueva y en crecimiento de Madrid, de una constructora con más de 20 años en España. Entrada del 30% y entrega en 2028. Piscina, gimnasio, garaje, trastero y zonas verdes."
     },
     "photos": [
-      "puerto-banus",
-      "living-modern",
-      "bedroom-modern"
+      "madrid-newbuild"
     ]
   },
   {
     "id": "NX-101",
-    "sample": true,
-    "status": "rented",
+    "status": "available",
     "deal": "rent",
     "type": "apartment",
-    "price": 1650,
+    "price": 1700,
+    "priceFrom": true,
     "beds": 2,
-    "baths": 1,
-    "size": 74,
     "city": "Madrid",
-    "area": "Castellana",
     "features": [
-      "lift",
-      "heating",
-      "metro",
       "furnished"
     ],
-    "added": "2026-10-15",
+    "added": "2026-11-09",
     "title": {
-      "fa": "آپارتمان مبله نزدیک برج‌های کاستیانا",
-      "en": "Furnished flat near the Castellana towers",
-      "es": "Piso amueblado junto a las torres de la Castellana"
+      "fa": "آپارتمان دوخوابه مبله در مادرید",
+      "en": "Furnished two-bedroom flat in Madrid",
+      "es": "Piso amueblado de dos dormitorios en Madrid"
     },
     "text": {
-      "fa": "مبله و آماده، با آسانسور و گرمایش. نزدیک خط مترو و مراکز کاری شمال مادرید.",
-      "en": "Furnished and ready, with lift and heating. Close to the metro and the business district in the north of Madrid.",
-      "es": "Amueblado y listo, con ascensor y calefacción. Cerca del metro y de la zona de negocios del norte de Madrid."
+      "fa": "آپارتمان دوخوابه، کاملاً مبله و آماده سکونت. هزینه آب، برق و اینترنت در اجاره ماهانه گنجانده شده است. مناسب برای خانواده‌ها، دانشجویان و افراد شاغل.",
+      "en": "A fully furnished two-bedroom flat, ready to move in. Water, electricity and internet are included in the monthly rent. Suits families, students and working professionals.",
+      "es": "Piso de dos dormitorios totalmente amueblado y listo para entrar a vivir. Agua, luz e internet incluidos en el alquiler. Ideal para familias, estudiantes o profesionales."
     },
     "photos": [
-      "living-modern",
-      "flat-gold",
-      "bedroom-modern"
+      "madrid-furnished"
     ]
   }
 ];
