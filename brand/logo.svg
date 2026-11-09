@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 320" width="600" height="320">
+  <defs>
+    <!-- Realistic brushed metallic gold gradient matching the office wall sign -->
+    <linearGradient id="goldMain" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E9CFA8"/>
+      <stop offset="28%" stop-color="#CFA472"/>
+      <stop offset="52%" stop-color="#B68652"/>
+      <stop offset="76%" stop-color="#DAB588"/>
+      <stop offset="100%" stop-color="#8F6339"/>
+    </linearGradient>
+    <linearGradient id="goldSub" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#9A6E41"/>
+      <stop offset="45%" stop-color="#C99E6B"/>
+      <stop offset="70%" stop-color="#E4C69C"/>
+      <stop offset="100%" stop-color="#A87B4C"/>
+    </linearGradient>
+    <linearGradient id="goldText" x1="0%" y1="0%" x2="100%" y2="25%">
+      <stop offset="0%" stop-color="#9E7245"/>
+      <stop offset="22%" stop-color="#D7B183"/>
+      <stop offset="50%" stop-color="#B88956"/>
+      <stop offset="78%" stop-color="#E1C297"/>
+      <stop offset="100%" stop-color="#94683D"/>
+    </linearGradient>
+    <!-- Subtle 3D architectural wall shadow -->
+    <filter id="wallShadow" x="-15%" y="-15%" width="130%" height="135%">
+      <feDropShadow dx="-2" dy="3.5" stdDeviation="2.2" flood-color="#2A211C" flood-opacity="0.32"/>
+      <feDropShadow dx="0" dy="1" stdDeviation="0.6" flood-color="#5C4128" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <!-- ═════════ NX MONOGRAM ═════════ -->
+  <g transform="translate(190, 4) scale(1.1)" filter="url(#wallShadow)">
+    <!-- Upper-right thin diagonal with top-right bracketed serif (tucks just behind main diagonal) -->
+    <path fill="url(#goldSub)" d="
+      M 130 14
+      L 174 14
+      L 174 16.5
+      C 164 17, 160 20, 155.5 26.5
+      L 116.5 82
+      L 109.5 72.5
+      L 146 21.5
+      C 149 17.5, 144 16.8, 130 16.5
+      Z
+    "/>
+
+    <!-- Left vertical stem + lower-left thin diagonal + bottom-left bracketed serif -->
+    <path fill="url(#goldSub)" d="
+      M 53.5 41.5
+      L 61 52
+      L 61 116.5
+      L 93.5 71
+      L 100.5 80.5
+      L 62.5 133.5
+      C 60.5 136.5, 60.5 141, 61.5 144.5
+      C 63 149.5, 68.5 151.2, 79 151.5
+      L 79 154
+      L 36 154
+      L 36 151.5
+      C 47.5 151.2, 52.5 149, 53.5 142
+      Z
+    "/>
+
+    <!-- Main sweeping thick diagonal (top-left serif to bottom-right serif) -->
+    <path fill="url(#goldMain)" d="
+      M 16 14
+      L 68.5 14
+      L 158 139.5
+      C 163.5 147, 170 150.8, 184 151.5
+      L 184 154
+      L 137.5 154
+      L 44 25
+      C 38.5 18, 30.5 16.8, 16 16.5
+      Z
+    "/>
+  </g>
+
+  <!-- ═════════ NOVAREXIUM WORDMARK ═════════ -->
+  <g filter="url(#wallShadow)">
+    <text x="305" y="238"
+          text-anchor="middle"
+          font-family="'Cinzel', 'Trajan Pro', 'Times New Roman', serif"
+          font-size="42"
+          font-weight="600"
+          letter-spacing="10.5"
+          fill="url(#goldText)">NOVAREXIUM</text>
+
+    <!-- ═════════ GROUP + FLANKING BARS ═════════ -->
+    <rect x="62" y="276" width="144" height="3" rx="1.5" fill="url(#goldText)"/>
+    <text x="306" y="286"
+          text-anchor="middle"
+          font-family="'Montserrat', 'Vazirmatn', 'Segoe UI', sans-serif"
+          font-size="24"
+          font-weight="600"
+          letter-spacing="11.5"
+          fill="url(#goldText)">GROUP</text>
+    <rect x="394" y="276" width="144" height="3" rx="1.5" fill="url(#goldText)"/>
+  </g>
+</svg>
