@@ -179,7 +179,7 @@
     const place = (s) => { const k = 'pl_' + String(s).replace(/\s+/g, '_').replace('á', 'a'); const v = t(k); return v === k ? s : v; };
     const src = (n, w) => `${NX.root || ""}img/homes/${encodeURIComponent(n)}-${w}.webp`;
     const srcset = (n) => `${src(n, 800)} 800w, ${src(n, 1600)} 1600w`;
-    const price = (h) => !h.price ? esc(t('l_price_req')) : (h.priceFrom ? `<small>${esc(t('l_from'))}</small>` : '') + eur(h.price) + (h.deal === 'rent' ? `<small>${esc(t('per_mo'))}</small>` : '');
+    const price = (h) => !h.price ? esc(t('l_price_req')) : (h.priceFrom ? `<small>${esc(t('l_from'))}</small>` : h.priceAbout ? `<small>${esc(t('l_about'))}</small>` : '') + eur(h.price) + (h.deal === 'rent' ? `<small>${esc(t('per_mo'))}</small>` : '');
     const bedsTxt = (h) => h.bedsTo ? `${num(h.beds)}–${num(h.bedsTo)}` : num(h.beds);
     const pv = (h) => h.price || Infinity;
     const loc = (h) => [h.area, h.city].filter(Boolean).map(place).join(sep());
